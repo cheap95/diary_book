@@ -17,10 +17,10 @@ class DiariesController < ApplicationController
       @diary = Diary.new(diary_params)
       if @diary.save
         format.html { redirect_to @diary, notice: 'Dairy was successfully created_at'}
-        format.json { render :show, status: :created, location: @dairy}
+        format.json { render :show, status: :created, location: @diary}
       else
         format.html ( render :new)
-        format.json { render json: @dairy.error, status: :unprocessable_entity}
+        format.json { render json: @diary.error, status: :unprocessable_entity}
       end
    end
   end
@@ -38,6 +38,7 @@ class DiariesController < ApplicationController
 
   def destroy
     
+  
   end
 
   private
@@ -46,7 +47,7 @@ class DiariesController < ApplicationController
     @diary = Diary.find(params[:id])
   end
   def diary_params
-    params.permit(:title, :body)
-    #params.require(:diary).permit(:title, :body)
+    #params.permit(:title, :body)
+    params.require(:diary).permit(:title, :body)
   end 
 end

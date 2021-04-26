@@ -19,11 +19,11 @@
         <td><%= d.id %></td>
         <td><%= d.title %></td>
         <td><%= d.body %></td>
-        <%#<td><%= d.created_at %></td>
-        <%# <td><%= d.updated_at %></td> %> %>
-        <td><%= link_to 'Show', d %></td>
-        <td><%= link_to 'Edit', new_diary_path(d) %></td>
-        <td><%= link_to 'Delete', d, method: :delete, data: { confirm: "削除してよろしいでしょうか？\r＊削除内容は元には戻りません＊"} %></td>
+        <%#<td><%= d.created_at %><%#</td>%>
+        <%# <td><%= d.updated_at %><%#</td>%>
+        <td><%= link_to '詳細', d %></td>
+        <td><%= link_to '編集', edit_diary_path(d) %></td>
+        <td><%= link_to '削除', d, method: :delete, data: { confirm: "削除してよろしいでしょうか？\r＊削除内容は元には戻りません＊"} %></td>
     <% end %>
   </tbody>
 </table>

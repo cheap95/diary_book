@@ -1,6 +1,6 @@
-<%= form_with model: @diary, local: true do |f| %>
+<%= form_with model: diary, local: true do |f| %>
   <% if @diary.errors.any? %> 
-   <div id="error_expranation"> %>
+   <div id="error_expranation"> 
      <h2><%= pluralize(dairy.errors.count, "error")%> prohited this dairy form being saved:</h2>
     
   </div>
@@ -12,16 +12,16 @@
   <% end %>
 <% end %>
 
-<%= form_with model: @diary, local: true do |f|%>
+<%= form_with model: diary, local: true do |f|%>
   <div class="filed">
-    <%= f.label :title %>
+    <%= f.label :title,"タイトル" %>
     <%= f.text_field :title, id: :diary_title %> <%# id: :diary_title %>
   </div>
   <div class="filed">
-    <%= f.label :body %>  
+    <%= f.label :body,"本文" %>  
     <%= f.text_area :body, id: :diary_body %> <%# id: :diary_body %>
   </div>
   <div class="action">
-    <%= f.submit "submit" %>
+    <%= f.submit "投稿" %>
   </div>
 <% end%>

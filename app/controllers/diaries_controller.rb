@@ -13,15 +13,16 @@ class DiariesController < ApplicationController
 
   def create
     #binding.pry
-    respond_to do |format|
       @diary = Diary.new(diary_params)
-      if @diary.save
-        format.html { redirect_to @diary, notice: 'Dairy was successfully created_at'}
         format.json { render :show, status: :created, location: @diary}
-      else
-        format.html ( render :new)
-        format.json { render json: @diary.error, status: :unprocessable_entity}
-      end
+      respond_to do |format|
+        if @diary.save
+          format.html { redirect_to @diary, notice: 'Diary was successfully created_at'}
+          format.json { render :show, status: :created, location: @diary}
+        else
+          format.html ( render :new)
+          format.json { render json: @diary.error, status: :unprocessable_entity}
+        end
    end
   end
 
@@ -29,7 +30,15 @@ class DiariesController < ApplicationController
     
   end
   def update
-    
+      respond_to do |format|
+      if @diary.update(diary_params)  
+          format.html { redirect_to @diary, notice: 'Diary was successfully updated'}
+          format.json { render :show, status: :ok, location: @diary }
+        else
+          format.html { render :edit }
+          format.json { render json: @diary.error, status: :unprocessable_entity }
+        end
+      end
   end
 
   def show
@@ -37,7 +46,8 @@ class DiariesController < ApplicationController
   end
 
   def destroy
-    
+    @diary.destroy
+    redirect_to diaries_path
   
   end
 
@@ -47,7 +57,6 @@ class DiariesController < ApplicationController
     @diary = Diary.find(params[:id])
   end
   def diary_params
-    #params.permit(:title, :body)
     params.require(:diary).permit(:title, :body)
   end 
 end

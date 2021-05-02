@@ -12,9 +12,7 @@ class DiariesController < ApplicationController
   end
 
   def create
-    #binding.pry
       @diary = Diary.new(diary_params)
-        format.json { render :show, status: :created, location: @diary}
       respond_to do |format|
         if @diary.save
           format.html { redirect_to @diary, notice: 'Diary was successfully created_at'}
